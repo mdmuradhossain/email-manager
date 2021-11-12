@@ -3,6 +3,7 @@ package io.murad.email.manager.controller;
 import io.murad.email.manager.model.Email;
 import io.murad.email.manager.service.EmailService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,5 +34,12 @@ public class EmailController {
     public String send(@ModelAttribute("email") Email email) {
         emailService.sendAndStoreEmail(email);
         return "email/sentEmails";
+    }
+
+    @GetMapping(path = "/sent")
+    public String sentMails(Model model){
+        model.addAttribute("sentEmails",emailService.findAllSentEmails());
+        return "email/sentEmails";
+
     }
 }
