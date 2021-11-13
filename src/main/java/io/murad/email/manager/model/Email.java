@@ -8,8 +8,8 @@ import javax.persistence.*;
 
 
 @Data
-@Entity
-@Table
+@Entity(name = "SentEmail")
+@Table(name = "sent_email")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Email {
@@ -18,19 +18,19 @@ public class Email {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "from")
+    @Column(name = "_from")
     private String from;
 
-    @Column(name = "to")
+    @Column(name = "_to")
     private String to;
 
-    @Column(nullable = true)
+    @Column(name = "_cc", nullable = true)
     private String cc;
 
-    @Column(name = "subject")
+    @Column(name = "_subject")
     private String subject;
 
-    @Column(name = "body")
+    @Column(name = "_body")
     @Lob
     private String body;
 }
