@@ -6,10 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(value = "/mail")
@@ -41,5 +38,11 @@ public class EmailController {
         model.addAttribute("sentEmails",emailService.findAllSentEmails());
         return "email/sentEmails";
 
+    }
+
+    @GetMapping(path = "/sent/{id}")
+    public String getEmail(@PathVariable("id") Long id,Model model){
+        model.addAttribute("email",emailService.getEmail(id));
+        return "email/displayEmail";
     }
 }

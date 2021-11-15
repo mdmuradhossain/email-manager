@@ -21,10 +21,11 @@
         </thead>
         <tbody>
         <tr th:each="sentEmail : ${sentEmails}" class="bg-emerald-200 border">
-            <td th:text="${sentEmail.id}"></td>
+            <td><a th:href="@{/mail/sent/{id}(id=${sentEmail.id})}" th:text="${sentEmail.id}"></a></td>
             <td th:text="${sentEmail.to}"></td>
             <td th:text="${sentEmail.subject}"></td>
             <td th:text="${sentEmail.body}" class="h-auto"></td>
+            <td><a th:href="@{/mail/sent/{id}(id=${sentEmail.id})}">View</a></td>
         </tr>
         </tbody>
     </table>

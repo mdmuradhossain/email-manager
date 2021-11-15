@@ -3,6 +3,7 @@ package io.murad.email.manager.service;
 import io.murad.email.manager.model.Email;
 import io.murad.email.manager.repository.EmailRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,5 +22,9 @@ public class EmailService {
 
     public List<Email> findAllSentEmails() {
         return emailRepository.findAll();
+    }
+
+    public Email getEmail(Long id) {
+        return emailRepository.findById(id).orElseThrow(()-> new RuntimeException("Not Found"));
     }
 }
