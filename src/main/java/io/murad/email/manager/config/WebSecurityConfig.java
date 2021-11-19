@@ -21,9 +21,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin()
-                .loginPage("/login")
-        .defaultSuccessUrl("/dashboard");
+        http.authorizeRequests().anyRequest().authenticated()
+                .and()
+                    .formLogin()
+//                .loginPage("/auth/login").permitAll()
+//                .usernameParameter("username")
+//                .passwordParameter("password")
+//                .loginProcessingUrl("/login")
+        .defaultSuccessUrl("/mail");
     }
 
     @Override
@@ -33,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

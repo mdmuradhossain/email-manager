@@ -2,6 +2,7 @@ package io.murad.email.manager.repository;
 
 import io.murad.email.manager.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 

@@ -17,6 +17,11 @@ public class AuthController {
 
     private final UserService userService;
 
+    @GetMapping(path = "/login")
+    public String signinPage(){
+        return "users/signin";
+    }
+
     @GetMapping(path = "/signup")
     public String signupForm(Model model){
         model.addAttribute("user",new User());
